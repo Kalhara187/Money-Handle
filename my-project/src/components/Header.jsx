@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { DollarSign, Menu, X } from 'lucide-react';
 
 const Header = () => {
@@ -13,7 +14,7 @@ const Header = () => {
             <div className="bg-primary-600 p-2 rounded-lg">
               <DollarSign className="h-6 w-6 text-white" />
             </div>
-            <span className="text-2xl font-bold text-gray-900">Money Handle</span>
+            <Link to="/" className="text-2xl font-bold text-gray-900">Money Handle</Link>
           </div>
 
           {/* Desktop Navigation */}
@@ -31,12 +32,15 @@ const Header = () => {
 
           {/* Desktop CTA Buttons */}
           <div className="hidden md:flex space-x-4">
-            <button className="text-primary-600 hover:text-primary-700 font-medium transition-colors">
+            <Link 
+              to="/signin" 
+              className="text-primary-600 hover:text-primary-700 font-medium transition-colors"
+            >
               Sign In
-            </button>
-            <button className="btn-primary">
+            </Link>
+            <Link to="/get-started" className="btn-primary">
               Get Started
-            </button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -66,12 +70,15 @@ const Header = () => {
                 Contact
               </a>
               <div className="flex flex-col space-y-2 pt-4">
-                <button className="text-primary-600 hover:text-primary-700 font-medium transition-colors text-left">
+                <Link 
+                  to="/signin" 
+                  className="text-primary-600 hover:text-primary-700 font-medium transition-colors text-left"
+                >
                   Sign In
-                </button>
-                <button className="btn-primary text-center">
+                </Link>
+                <Link to="/get-started" className="btn-primary text-center">
                   Get Started
-                </button>
+                </Link>
               </div>
             </nav>
           </div>
