@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { DollarSign, Menu, X } from 'lucide-react';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+
+  const isActive = (path) => location.pathname === path;
 
   return (
     <header className="bg-white shadow-lg border-b border-gray-100 sticky top-0 z-50">
@@ -19,15 +22,36 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
-            <a href="#features" className="text-gray-600 hover:text-primary-600 font-medium transition-colors">
+            <Link 
+              to="/features" 
+              className={`font-medium transition-colors ${
+                isActive('/features') 
+                  ? 'text-primary-600 border-b-2 border-primary-600 pb-1' 
+                  : 'text-gray-600 hover:text-primary-600'
+              }`}
+            >
               Features
-            </a>
-            <a href="#about" className="text-gray-600 hover:text-primary-600 font-medium transition-colors">
+            </Link>
+            <Link 
+              to="/about" 
+              className={`font-medium transition-colors ${
+                isActive('/about') 
+                  ? 'text-primary-600 border-b-2 border-primary-600 pb-1' 
+                  : 'text-gray-600 hover:text-primary-600'
+              }`}
+            >
               About
-            </a>
-            <a href="#contact" className="text-gray-600 hover:text-primary-600 font-medium transition-colors">
+            </Link>
+            <Link 
+              to="/contact" 
+              className={`font-medium transition-colors ${
+                isActive('/contact') 
+                  ? 'text-primary-600 border-b-2 border-primary-600 pb-1' 
+                  : 'text-gray-600 hover:text-primary-600'
+              }`}
+            >
               Contact
-            </a>
+            </Link>
           </nav>
 
           {/* Desktop CTA Buttons */}
@@ -60,23 +84,52 @@ const Header = () => {
         {isMenuOpen && (
           <div className="md:hidden py-4 border-t border-gray-100">
             <nav className="flex flex-col space-y-4">
-              <a href="#features" className="text-gray-600 hover:text-primary-600 font-medium transition-colors">
+              <Link 
+                to="/features" 
+                className={`font-medium transition-colors ${
+                  isActive('/features') 
+                    ? 'text-primary-600 bg-primary-50 px-3 py-2 rounded-lg' 
+                    : 'text-gray-600 hover:text-primary-600'
+                }`}
+                onClick={() => setIsMenuOpen(false)}
+              >
                 Features
-              </a>
-              <a href="#about" className="text-gray-600 hover:text-primary-600 font-medium transition-colors">
+              </Link>
+              <Link 
+                to="/about" 
+                className={`font-medium transition-colors ${
+                  isActive('/about') 
+                    ? 'text-primary-600 bg-primary-50 px-3 py-2 rounded-lg' 
+                    : 'text-gray-600 hover:text-primary-600'
+                }`}
+                onClick={() => setIsMenuOpen(false)}
+              >
                 About
-              </a>
-              <a href="#contact" className="text-gray-600 hover:text-primary-600 font-medium transition-colors">
+              </Link>
+              <Link 
+                to="/contact" 
+                className={`font-medium transition-colors ${
+                  isActive('/contact') 
+                    ? 'text-primary-600 bg-primary-50 px-3 py-2 rounded-lg' 
+                    : 'text-gray-600 hover:text-primary-600'
+                }`}
+                onClick={() => setIsMenuOpen(false)}
+              >
                 Contact
-              </a>
+              </Link>
               <div className="flex flex-col space-y-2 pt-4">
                 <Link 
                   to="/signin" 
                   className="text-primary-600 hover:text-primary-700 font-medium transition-colors text-left"
+                  onClick={() => setIsMenuOpen(false)}
                 >
                   Sign In
                 </Link>
-                <Link to="/get-started" className="btn-primary text-center">
+                <Link 
+                  to="/get-started" 
+                  className="btn-primary text-center"
+                  onClick={() => setIsMenuOpen(false)}
+                >
                   Get Started
                 </Link>
               </div>
