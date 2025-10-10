@@ -5,6 +5,18 @@ import { CheckCircle, ArrowRight, DollarSign, TrendingUp, Shield, Clock, Users, 
 const GetStarted = () => {
   const [selectedPlan, setSelectedPlan] = useState('personal');
 
+  const handlePlanSelect = (planKey, planName) => {
+    // Store selected plan in localStorage for the sign-up process
+    localStorage.setItem('selectedPlan', JSON.stringify({
+      key: planKey,
+      name: planName,
+      price: plans[planKey].price
+    }));
+    
+    // Navigate to sign-in page with plan context
+    window.location.href = '/signin?plan=' + planKey;
+  };
+
   const plans = {
     personal: {
       name: 'Personal',
@@ -216,6 +228,7 @@ const GetStarted = () => {
                   </ul>
 
                   <button
+                    onClick={() => handlePlanSelect(key, plan.name)}
                     className={`w-full py-3 px-6 rounded-lg font-semibold transition-all duration-200 ${
                       plan.popular
                         ? 'bg-primary-600 hover:bg-primary-700 text-white shadow-lg hover:shadow-xl'

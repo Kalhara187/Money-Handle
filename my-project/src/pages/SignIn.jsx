@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Eye, EyeOff, Mail, Lock, ArrowRight } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Eye, EyeOff, Mail, Lock, ArrowRight, CheckCircle } from 'lucide-react';
 
 const SignIn = () => {
   const [formData, setFormData] = useState({
@@ -9,6 +9,24 @@ const SignIn = () => {
   });
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState(null);
+
+  // Check for selected plan from localStorage or URL
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const planFromUrl = urlParams.get('plan');
+    const planFromStorage = localStorage.getItem('selectedPlan');
+    
+    if (planFromStorage) {
+      setSelectedPlan(JSON.parse(planFromStorage));
+    } else if (planFromUrl) {
+      // Set basic plan info from URL
+      setSelectedPlan({
+        key: planFromUrl,
+        name: planFromUrl.charAt(0).toUpperCase() + planFromUrl.slice(1)
+      });
+    }
+  }, []);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -41,6 +59,21 @@ const SignIn = () => {
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome Back</h1>
           <p className="text-gray-600">Sign in to your Money Handle account</p>
         </div>
+
+        {/* Selected Plan Indicator */}
+        {selectedPlan && (
+          <div className="bg-primary-50 border border-primary-200 rounded-xl p-4 mb-6">
+            <div className="flex items-center">
+              <CheckCircle className="h-5 w-5 text-primary-600 mr-2" />
+              <span className="text-primary-800 font-medium">
+                Selected Plan: {selectedPlan.name}
+                {selectedPlan.price && (
+                  <span className="text-primary-600 ml-2">({selectedPlan.price})</span>
+                )}
+              </span>
+            </div>
+          </div>
+        )}
 
         {/* Sign In Form */}
         <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8">
@@ -133,7 +166,7 @@ const SignIn = () => {
                 <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
               ) : (
                 <>
-                  Sign In
+                  {selectedPlan ? `Start ${selectedPlan.name} Plan` : 'Sign In'}
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </>
               )}

@@ -1,5 +1,6 @@
 import React from 'react';
 import { CheckCircle, Shield, TrendingUp, Users, Smartphone, BarChart3, Bell, CreditCard } from 'lucide-react';
+import AIFinancialInsights from '../components/AIFinancialInsights';
 
 const Features = () => {
   const features = [
@@ -145,6 +146,9 @@ const Features = () => {
           </div>
         </div>
       </section>
+
+      {/* AI Features Section */}
+      <AIFinancialInsights />
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-primary-600 to-primary-700">

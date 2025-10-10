@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowRight, TrendingUp, Shield, Smartphone } from 'lucide-react';
 
 const Hero = () => {
@@ -19,10 +20,10 @@ const Hero = () => {
             
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 mb-12">
-              <button className="btn-primary flex items-center justify-center group">
+              <Link to="/get-started" className="btn-primary flex items-center justify-center group">
                 Start Free Trial
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </button>
+              </Link>
               <button className="btn-secondary">
                 Watch Demo
               </button>

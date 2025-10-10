@@ -23,6 +23,16 @@ const Header = () => {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
             <Link 
+              to="/dashboard" 
+              className={`font-medium transition-colors ${
+                isActive('/dashboard') 
+                  ? 'text-primary-600 border-b-2 border-primary-600 pb-1' 
+                  : 'text-gray-600 hover:text-primary-600'
+              }`}
+            >
+              Dashboard
+            </Link>
+            <Link 
               to="/features" 
               className={`font-medium transition-colors ${
                 isActive('/features') 
@@ -84,6 +94,17 @@ const Header = () => {
         {isMenuOpen && (
           <div className="md:hidden py-4 border-t border-gray-100">
             <nav className="flex flex-col space-y-4">
+              <Link 
+                to="/dashboard" 
+                className={`font-medium transition-colors ${
+                  isActive('/dashboard') 
+                    ? 'text-primary-600 bg-primary-50 px-3 py-2 rounded-lg' 
+                    : 'text-gray-600 hover:text-primary-600'
+                }`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Dashboard
+              </Link>
               <Link 
                 to="/features" 
                 className={`font-medium transition-colors ${
