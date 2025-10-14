@@ -1,13 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { MessageCircle, X, Send, Bot, User, Minimize2, Maximize2, RefreshCw, Calculator, Calendar, CreditCard, PieChart, Target, Bell } from 'lucide-react';
+import { MessageCircle, X, Send, Bot, User, Minimize2, Maximize2, RefreshCw, Calculator, Calendar, CreditCard, PieChart, Target, Bell, Sparkles, Zap, DollarSign, TrendingUp } from 'lucide-react';
 
 const AIChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
   const [messages, setMessages] = useState([
     {
       id: 1,
-      text: "Hi! I'm MoneyBot, your personal finance assistant. I can help you with:\n\n💰 Budget calculations\n📊 Expense tracking\n🎯 Goal setting\n📅 Bill reminders\n💳 Account management\n\nWhat would you like to do today?",
+      text: "✨ Welcome to MoneyBot! ✨\n\nI'm your intelligent financial companion, ready to transform how you manage money! 🚀\n\n🌟 What I can do for you:\n💰 Smart Budget Analysis\n📈 Investment Calculations  \n🎯 Savings Goal Planning\n💳 Loan & Payment Calculator\n� Financial Reminders\n� Expense Insights\n\nLet's make your financial dreams a reality! What would you like to explore first?",
       sender: 'bot',
       timestamp: new Date()
     }
@@ -31,21 +32,21 @@ const AIChatBot = () => {
 
   const predefinedResponses = {
     greeting: [
-      "Hi! I'm here to help you with your finances. What would you like to do? 😊",
-      "Hello! I can help you with budgeting, calculations, and financial planning. What's on your mind? 💭",
-      "Welcome to Money Handle! I'm your AI assistant ready to help with financial tasks. 🚀"
+      "✨ Hey there! I'm your smart financial companion ready to unlock your money potential! What amazing goal shall we work on today? 🌟",
+      "🚀 Hello! Your personal finance wizard is here! I can crunch numbers, plan budgets, and make your financial dreams come true! What's your mission? �",
+      "🎉 Welcome to the future of finance! I'm MoneyBot, your AI-powered wealth builder. Let's create some financial magic together! ✨"
     ],
     budget: [
-      "Great! I can help you create a budget. Let me calculate this for you. 📊",
-      "Budgeting is key to financial success! 💪 Let me help you set up a personalized budget plan."
+      "🎯 Fantastic choice! Smart budgeting is your pathway to financial freedom! Let me analyze your numbers and create a personalized strategy 📊✨",
+      "💪 Budgeting mastery incoming! I'll transform your income and expenses into a powerful financial roadmap. Let's build wealth together! 🚀"
     ],
     savings: [
-      "I'll help you calculate your savings goals! 🎯 What amount are you trying to save and by when?",
-      "Let me help you create a savings plan with automatic calculations. 💡"
+      "🌟 Excellent! Saving money is like planting seeds for your future wealth! � Tell me your target amount and timeline, and I'll craft the perfect savings strategy! 💎",
+      "💫 Smart saver alert! I'll calculate the optimal monthly savings plan to reach your goals faster than you thought possible! ⚡"
     ],
     investment: [
-      "I can help calculate investment returns and create a portfolio plan! 📈",
-      "Let me assist you with investment calculations and tracking. 🎲"
+      "📈 Investment genius mode activated! I'll help you calculate potential returns and design a winning portfolio strategy! Let's grow your wealth exponentially! 🚀�",
+      "🎲 Ready to multiply your money? I'll analyze investment opportunities and show you the path to financial abundance! ✨📊"
     ],
     debt: [
       "I'll help you create a debt payoff plan with calculations! 💳",
@@ -140,12 +141,12 @@ const AIChatBot = () => {
   };
 
   const quickReplies = [
-    "💰 Calculate Budget",
-    "🎯 Set Savings Goal", 
-    "💳 Loan Calculator",
-    "🔔 Set Reminder",
-    "📊 Track Expenses",
-    "💡 Financial Tips"
+    { text: "💰 Calculate Budget", icon: Calculator, gradient: "from-green-400 to-emerald-500" },
+    { text: "🎯 Set Savings Goal", icon: Target, gradient: "from-blue-400 to-indigo-500" }, 
+    { text: "💳 Loan Calculator", icon: CreditCard, gradient: "from-purple-400 to-pink-500" },
+    { text: "🔔 Set Reminder", icon: Bell, gradient: "from-orange-400 to-red-500" },
+    { text: "📊 Track Expenses", icon: PieChart, gradient: "from-teal-400 to-cyan-500" },
+    { text: "💡 Financial Tips", icon: Sparkles, gradient: "from-yellow-400 to-amber-500" }
   ];
 
   const parseUserInput = (message) => {
@@ -342,7 +343,7 @@ Try saying something like "Calculate my budget" or "Set a reminder" and I'll wal
     setMessages([
       {
         id: 1,
-        text: "Hi! I'm MoneyBot, your personal finance assistant. I can help you with:\n\n💰 Budget calculations\n📊 Expense tracking\n🎯 Goal setting\n📅 Bill reminders\n💳 Account management\n\nWhat would you like to do today?",
+        text: "✨ Welcome back to MoneyBot! ✨\n\nI'm your intelligent financial companion, ready to transform how you manage money! 🚀\n\n🌟 What I can do for you:\n💰 Smart Budget Analysis\n📈 Investment Calculations  \n🎯 Savings Goal Planning\n💳 Loan & Payment Calculator\n� Financial Reminders\n� Expense Insights\n\nLet's make your financial dreams a reality! What would you like to explore first?",
         sender: 'bot',
         timestamp: new Date()
       }
@@ -352,17 +353,36 @@ Try saying something like "Calculate my budget" or "Set a reminder" and I'll wal
 
   if (!isOpen) {
     return (
-      <div className="fixed bottom-6 right-6 z-50">
+      <div className="fixed bottom-10 right-12 z-50">
         <button
           onClick={() => setIsOpen(true)}
-          className="bg-primary-600 hover:bg-primary-700 text-white rounded-full p-4 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 group relative"
+          className="bg-gradient-to-br from-primary-500 via-primary-600 to-primary-700 hover:from-primary-600 hover:via-primary-700 hover:to-primary-800 text-white rounded-full p-4 shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:scale-110 active:scale-95 group relative overflow-hidden"
         >
-          <MessageCircle className="h-6 w-6" />
-          {/* Notification pulse */}
-          <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-          {/* Tooltip */}
-          <div className="absolute bottom-full right-0 mb-2 px-3 py-1 bg-gray-800 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
-            Chat with MoneyBot 💬
+          {/* Animated background glow */}
+          <div className="absolute inset-0 bg-gradient-to-r from-primary-400 to-primary-600 rounded-full blur opacity-75 animate-pulse"></div>
+          
+          {/* Main icon with animation */}
+          <div className="relative z-10">
+            <MessageCircle className="h-6 w-6 animate-bounce" />
+          </div>
+          
+          {/* Sparkle animation */}
+          <div className="absolute top-1 right-1">
+            <Sparkles className="h-3 w-3 text-yellow-300 animate-pulse" />
+          </div>
+          
+          {/* Notification pulse with gradient */}
+          <div className="absolute -top-1 -right-1 w-4 h-4 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full animate-bounce">
+            <div className="w-full h-full bg-white rounded-full animate-ping opacity-75"></div>
+          </div>
+          
+          {/* Enhanced tooltip */}
+          <div className="absolute bottom-full right-0 mb-3 px-4 py-2 bg-gradient-to-r from-gray-800 to-gray-900 text-white text-sm rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap shadow-lg transform group-hover:scale-105">
+            <div className="flex items-center space-x-2">
+              <Zap className="h-3 w-3 text-yellow-400" />
+              <span>Chat with MoneyBot AI ✨</span>
+            </div>
+            <div className="absolute top-full right-3 w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-gray-800"></div>
           </div>
         </button>
       </div>
@@ -371,39 +391,50 @@ Try saying something like "Calculate my budget" or "Set a reminder" and I'll wal
 
   return (
     <div className="fixed bottom-6 right-6 z-50">
-      <div className={`bg-white rounded-lg shadow-2xl border border-gray-200 transition-all duration-300 ${
-        isMinimized ? 'w-80 h-16' : 'w-80 h-96'
+      <div className={`bg-white rounded-2xl shadow-2xl border border-gray-100 backdrop-blur-lg transition-all duration-500 ease-out transform ${
+        isMinimized 
+          ? 'w-96 h-72 translate-x-0 scale-100' 
+          : 'w-96 h-2/3 translate-x-0 scale-100'
       }`}>
-        {/* Header */}
-        <div className="bg-primary-600 text-white p-4 rounded-t-lg flex items-center justify-between">
-          <div className="flex items-center">
-            <div className="w-8 h-8 bg-primary-500 rounded-full flex items-center justify-center mr-3">
-              <Bot className="h-5 w-5" />
+        {/* Header with gradient */}
+        <div className="bg-gradient-to-r from-primary-600 via-primary-700 to-primary-800 text-white p-4 rounded-t-2xl flex items-center justify-between relative overflow-hidden">
+          {/* Animated background pattern */}
+          <div className="absolute inset-0 bg-gradient-to-r from-primary-500/20 to-primary-900/20 animate-pulse"></div>
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-600"></div>
+          <div className="flex items-center relative z-10">
+            <div className="w-10 h-10 bg-gradient-to-br from-white/20 to-white/5 rounded-xl flex items-center justify-center mr-3 backdrop-blur-sm border border-white/10 shadow-lg">
+              <Bot className="h-5 w-5 animate-pulse" />
             </div>
             <div>
-              <h3 className="font-semibold">MoneyBot</h3>
-              <p className="text-xs text-primary-100">Financial Assistant</p>
+              <h3 className="font-bold text-lg flex items-center">
+                MoneyBot 
+                <Sparkles className="h-4 w-4 ml-1 text-yellow-300 animate-spin" />
+              </h3>
+              <p className="text-xs text-white/80 flex items-center">
+                <Zap className="h-3 w-3 mr-1" />
+                AI Financial Assistant
+              </p>
             </div>
           </div>
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-2 relative z-10">
             <button
               onClick={clearChat}
               title="Clear chat"
-              className="hover:bg-primary-500 p-1 rounded transition-colors"
+              className="hover:bg-white/20 p-2 rounded-xl transition-all duration-300 transform hover:scale-110 backdrop-blur-sm border border-white/10"
             >
               <RefreshCw className="h-4 w-4" />
             </button>
             <button
               onClick={() => setIsMinimized(!isMinimized)}
               title={isMinimized ? "Expand" : "Minimize"}
-              className="hover:bg-primary-500 p-1 rounded transition-colors"
+              className="hover:bg-white/20 p-2 rounded-xl transition-all duration-300 transform hover:scale-110 backdrop-blur-sm border border-white/10"
             >
               {isMinimized ? <Maximize2 className="h-4 w-4" /> : <Minimize2 className="h-4 w-4" />}
             </button>
             <button
               onClick={() => setIsOpen(false)}
               title="Close chat"
-              className="hover:bg-primary-500 p-1 rounded transition-colors"
+              className="hover:bg-red-400/20 p-2 rounded-xl transition-all duration-300 transform hover:scale-110 backdrop-blur-sm border border-white/10"
             >
               <X className="h-4 w-4" />
             </button>
@@ -412,35 +443,39 @@ Try saying something like "Calculate my budget" or "Set a reminder" and I'll wal
 
         {!isMinimized && (
           <>
-            {/* Messages */}
-            <div className="h-64 overflow-y-auto p-4 space-y-3">
+            {/* Messages with gradient background */}
+            <div className="h-80 overflow-y-auto p-4 space-y-4 bg-gradient-to-br from-gray-50 to-white relative">
+              {/* Decorative background elements */}
+              <div className="absolute top-0 left-0 w-24 h-24 bg-gradient-to-br from-primary-100/20 to-transparent rounded-full blur-xl"></div>
+              <div className="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-purple-100/20 to-transparent rounded-full blur-xl"></div>
               {messages.map((message) => (
                 <div
                   key={message.id}
-                  className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
+                  className={`flex relative z-10 ${message.sender === 'user' ? 'justify-end' : 'justify-start'} transform transition-all duration-300 hover:scale-105`}
                 >
-                  <div className={`flex items-start space-x-2 max-w-xs ${
+                  <div className={`flex items-start space-x-3 max-w-xs ${
                     message.sender === 'user' ? 'flex-row-reverse space-x-reverse' : 'flex-row'
                   }`}>
-                    <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 ${
+                    <div className={`w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg ${
                       message.sender === 'user' 
-                        ? 'bg-primary-100 text-primary-600' 
-                        : 'bg-gray-100 text-gray-600'
+                        ? 'bg-gradient-to-br from-primary-500 to-primary-700 text-white' 
+                        : 'bg-gradient-to-br from-gray-100 to-gray-200 text-gray-700 border border-gray-300'
                     }`}>
                       {message.sender === 'user' ? 
-                        <User className="h-3 w-3" /> : 
-                        <Bot className="h-3 w-3" />
+                        <User className="h-4 w-4" /> : 
+                        <Bot className="h-4 w-4" />
                       }
                     </div>
-                    <div className={`p-2 rounded-lg text-sm ${
+                    <div className={`p-3 rounded-2xl text-sm shadow-lg backdrop-blur-sm transition-all duration-300 hover:shadow-xl ${
                       message.sender === 'user'
-                        ? 'bg-primary-600 text-white'
-                        : 'bg-gray-100 text-gray-900'
+                        ? 'bg-gradient-to-br from-primary-600 to-primary-700 text-white border border-primary-500/20'
+                        : 'bg-gradient-to-br from-white to-gray-50 text-gray-800 border border-gray-200'
                     }`}>
-                      <div className="whitespace-pre-line">{message.text}</div>
-                      <p className={`text-xs mt-1 ${
-                        message.sender === 'user' ? 'text-primary-100' : 'text-gray-500'
+                      <div className="whitespace-pre-line leading-relaxed">{message.text}</div>
+                      <p className={`text-xs mt-2 flex items-center ${
+                        message.sender === 'user' ? 'text-primary-100' : 'text-gray-400'
                       }`}>
+                        <span className="mr-1">⏰</span>
                         {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                       </p>
                     </div>
@@ -449,16 +484,17 @@ Try saying something like "Calculate my budget" or "Set a reminder" and I'll wal
               ))}
               
               {isTyping && (
-                <div className="flex justify-start">
-                  <div className="flex items-center space-x-2">
-                    <div className="w-6 h-6 bg-gray-100 rounded-full flex items-center justify-center">
-                      <Bot className="h-3 w-3 text-gray-600" />
+                <div className="flex justify-start relative z-10">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-8 h-8 bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl flex items-center justify-center shadow-lg border border-gray-300">
+                      <Bot className="h-4 w-4 text-gray-700 animate-pulse" />
                     </div>
-                    <div className="bg-gray-100 p-2 rounded-lg">
-                      <div className="flex space-x-1">
-                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
-                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                    <div className="bg-gradient-to-br from-white to-gray-50 p-3 rounded-2xl shadow-lg border border-gray-200">
+                      <div className="flex space-x-1 items-center">
+                        <div className="w-2 h-2 bg-gradient-to-r from-primary-400 to-primary-600 rounded-full animate-bounce"></div>
+                        <div className="w-2 h-2 bg-gradient-to-r from-primary-500 to-primary-700 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                        <div className="w-2 h-2 bg-gradient-to-r from-primary-600 to-primary-800 rounded-full animate-bounce" style={{ animationDelay: '0.4s' }}></div>
+                        <span className="text-xs text-gray-500 ml-2">AI thinking...</span>
                       </div>
                     </div>
                   </div>
@@ -467,47 +503,68 @@ Try saying something like "Calculate my budget" or "Set a reminder" and I'll wal
               <div ref={messagesEndRef} />
             </div>
 
-            {/* Quick Replies */}
+            {/* Enhanced Quick Replies */}
             {messages.length <= 1 && (
-              <div className="px-4 pb-2">
-                <p className="text-xs text-gray-500 mb-2">Quick actions:</p>
-                <div className="grid grid-cols-2 gap-1">
-                  {quickReplies.map((reply, index) => (
-                    <button
-                      key={index}
-                      onClick={() => handleQuickReply(reply)}
-                      className="text-xs bg-gray-100 hover:bg-primary-50 text-gray-700 hover:text-primary-700 px-2 py-2 rounded transition-colors border hover:border-primary-200 flex items-center justify-center"
-                    >
-                      {reply}
-                    </button>
-                  ))}
+              <div className="px-4 pb-3 bg-gradient-to-r from-gray-50 to-white">
+                <p className="text-sm font-medium text-gray-600 mb-3 flex items-center">
+                  <Zap className="h-4 w-4 mr-2 text-yellow-500" />
+                  Quick Actions
+                </p>
+                <div className="grid grid-cols-2 gap-3">
+                  {quickReplies.map((reply, index) => {
+                    const IconComponent = reply.icon;
+                    return (
+                      <button
+                        key={index}
+                        onClick={() => handleQuickReply(reply.text)}
+                        className={`group relative overflow-hidden text-sm bg-gradient-to-br ${reply.gradient} hover:shadow-lg text-white px-3 py-3 rounded-xl transition-all duration-300 transform hover:scale-105 border border-white/20`}
+                      >
+                        <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div className="relative flex items-center justify-center space-x-2">
+                          <IconComponent className="h-4 w-4" />
+                          <span className="font-medium text-xs">{reply.text}</span>
+                        </div>
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
             )}
 
-            {/* Input */}
-            <div className="border-t border-gray-200 p-3">
-              <div className="flex space-x-2">
-                <input
-                  type="text"
-                  value={inputMessage}
-                  onChange={(e) => setInputMessage(e.target.value)}
-                  onKeyPress={handleKeyPress}
-                  placeholder="Ask me about budgeting, saving, investing..."
-                  className="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                  maxLength={200}
-                />
+            {/* Enhanced Input Area */}
+            <div className="border-t border-gray-200 p-4 bg-gradient-to-r from-white to-gray-50">
+              <div className="flex space-x-3">
+                <div className="flex-1 relative">
+                  <input
+                    type="text"
+                    value={inputMessage}
+                    onChange={(e) => setInputMessage(e.target.value)}
+                    onKeyPress={handleKeyPress}
+                    placeholder="Ask me about budgeting, saving, investing... ✨"
+                    className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all duration-300 bg-white shadow-sm hover:shadow-md"
+                    maxLength={200}
+                  />
+                  <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
+                    <DollarSign className="h-4 w-4 text-gray-400" />
+                  </div>
+                </div>
                 <button
                   onClick={handleSendMessage}
                   disabled={inputMessage.trim() === ''}
                   title="Send message"
-                  className="bg-primary-600 hover:bg-primary-700 disabled:bg-gray-300 text-white p-2 rounded-lg transition-colors disabled:cursor-not-allowed"
+                  className="bg-gradient-to-br from-primary-500 to-primary-700 hover:from-primary-600 hover:to-primary-800 disabled:from-gray-300 disabled:to-gray-400 text-white p-3 rounded-xl transition-all duration-300 transform hover:scale-105 disabled:cursor-not-allowed disabled:transform-none shadow-lg hover:shadow-xl disabled:shadow-sm"
                 >
-                  <Send className="h-4 w-4" />
+                  <Send className="h-5 w-5" />
                 </button>
               </div>
-              <div className="mt-1 text-xs text-gray-400 text-right">
-                {inputMessage.length}/200
+              <div className="mt-2 flex justify-between items-center">
+                <div className="text-xs text-gray-400 flex items-center">
+                  <TrendingUp className="h-3 w-3 mr-1" />
+                  Powered by AI
+                </div>
+                <div className="text-xs text-gray-400">
+                  {inputMessage.length}/200
+                </div>
               </div>
             </div>
           </>
