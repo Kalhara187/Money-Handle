@@ -10,6 +10,7 @@ import Features from './pages/Features';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Dashboard from './pages/Dashboard';
+import AdminDashboard from './pages/AdminDashboard';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import './App.css';
@@ -27,6 +28,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/signin" element={<SignIn />} />
             <Route path="/signup" element={<SignUp />} />
           </Routes>

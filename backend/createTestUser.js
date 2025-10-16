@@ -34,6 +34,24 @@ async function createTestUser() {
     console.log('Test user created successfully:');
     console.log('Email: test@example.com');
     console.log('Password: password123');
+
+    // Create admin user
+    const adminHashedPassword = await bcrypt.hash('admin123', 12);
+
+    const adminUser = new User({
+      firstName: 'Admin',
+      lastName: 'User',
+      email: 'admin@moneyhandle.com',
+      password: adminHashedPassword,
+      role: 'admin',
+      plan: 'premium',
+      subscriptionStatus: 'active'
+    });
+
+    await adminUser.save();
+    console.log('Admin user created successfully:');
+    console.log('Email: admin@moneyhandle.com');
+    console.log('Password: admin123');
     
     await mongoose.disconnect();
     console.log('Disconnected from MongoDB');

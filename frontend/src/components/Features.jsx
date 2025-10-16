@@ -1,11 +1,12 @@
 import React from 'react';
-import { 
-  PieChart, 
-  Target, 
-  CreditCard, 
-  TrendingUp, 
-  Bell, 
-  BarChart3
+import {
+  PieChart,
+  Target,
+  CreditCard,
+  TrendingUp,
+  Bell,
+  BarChart3,
+  Globe
 } from 'lucide-react';
 
 const Features = () => {
@@ -45,6 +46,12 @@ const Features = () => {
       title: "Smart Alerts",
       description: "Receive intelligent notifications about unusual spending and opportunities to save.",
       color: "text-yellow-600"
+    },
+    {
+      icon: Globe,
+      title: "Global Access",
+      description: "Access your financial data from anywhere in the world with our secure cloud platform.",
+      color: "text-teal-600"
     }
   ];
 

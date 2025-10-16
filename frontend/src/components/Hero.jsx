@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, TrendingUp, Shield, Smartphone } from 'lucide-react';
+import { ArrowRight, TrendingUp, Shield, Smartphone, Globe } from 'lucide-react';
 
 const Hero = () => {
   return (
@@ -42,6 +42,10 @@ const Hero = () => {
               <div className="flex items-center">
                 <TrendingUp className="h-4 w-4 mr-1" />
                 Real-time insights
+              </div>
+              <div className="flex items-center">
+                <Globe className="h-4 w-4 mr-1" />
+                Global access
               </div>
             </div>
           </div>
