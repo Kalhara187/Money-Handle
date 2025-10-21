@@ -3,6 +3,9 @@ import Hero from '../components/Hero';
 import Features from '../components/Features';
 import IncomeTracker from '../components/IncomeTracker';
 import Stats from '../components/Stats';
+import VideoDemo from '../components/VideoDemo';
+import Testimonials from '../components/Testimonials';
+import FAQ from '../components/FAQ';
 
 const Home = () => {
   return (
@@ -10,7 +13,10 @@ const Home = () => {
       <Hero />
       <IncomeTracker />
       <Features />
+      <VideoDemo />
+      <Testimonials />
       <Stats />
+      <FAQ />
     </main>
   );
 };
