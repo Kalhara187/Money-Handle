@@ -1,5 +1,6 @@
 ﻿import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { API_ENDPOINTS } from '../config/api';
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -27,21 +28,39 @@ const SignIn = () => {
     setError('');
 
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      if (!formData.email || !formData.password) {
-        throw new Error('Please fill in all fields');
+      console.log('Attempting to sign in with:', { email: formData.email });
+
+      // Call backend API
+      const response = await fetch(API_ENDPOINTS.SIGNIN, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: formData.email,
+          password: formData.password,
+        }),
+      });
+
+      console.log('Response status:', response.status);
+      const data = await response.json();
+      console.log('Response data:', data);
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Sign in failed');
       }
-      
-      if (!formData.email.includes('@')) {
-        throw new Error('Please enter a valid email address');
-      }
+
+      // Store token and user data
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('user', JSON.stringify(data.data.user));
+
+      console.log('Sign in successful, redirecting to dashboard');
 
       // Success - redirect to dashboard
       navigate('/dashboard');
       
     } catch (error) {
+      console.error('Sign in error:', error);
       setError(error.message || 'An error occurred during sign in');
     } finally {
       setIsLoading(false);
