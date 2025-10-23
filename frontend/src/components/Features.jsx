@@ -49,15 +49,18 @@ const Features = () => {
   ];
 
   return (
-    <section id="features" className="py-20 bg-white">
+    <section id="features" className="py-20 bg-gradient-to-b from-white to-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+          <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary-100 text-primary-700 text-sm font-medium mb-4">
+            ✨ Powerful Features
+          </div>
+          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
             Everything You Need to Manage Your Money
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Our comprehensive suite of financial tools helps you take control of your money, 
+            Our comprehensive suite of financial tools helps you take control of your money,
             plan for the future, and achieve your financial goals.
           </p>
         </div>
@@ -65,11 +68,11 @@ const Features = () => {
         {/* Features Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => (
-            <div key={index} className="feature-card group">
-              <div className={`w-12 h-12 rounded-lg bg-gray-100 flex items-center justify-center mb-4 group-hover:bg-primary-50 transition-colors`}>
-                <feature.icon className={`h-6 w-6 ${feature.color}`} />
+            <div key={index} className="feature-card group transform hover:scale-105 transition-all duration-300 hover:shadow-xl">
+              <div className={`w-14 h-14 rounded-xl bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-200 shadow-lg`}>
+                <feature.icon className={`h-7 w-7 ${feature.color}`} />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
+              <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-primary-600 transition-colors">
                 {feature.title}
               </h3>
               <p className="text-gray-600 leading-relaxed">

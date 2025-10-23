@@ -9,7 +9,7 @@ import FAQ from '../components/FAQ';
 
 const Home = () => {
   return (
-    <main>
+    <main className="overflow-x-hidden">
       <Hero />
       <IncomeTracker />
       <Features />
