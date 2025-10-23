@@ -1,5 +1,8 @@
 // API Configuration
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+// In development, use relative URLs to leverage Vite proxy
+// In production, use the full API URL from environment variable
+const isDevelopment = import.meta.env.DEV;
+const API_BASE_URL = isDevelopment ? '' : (import.meta.env.VITE_API_URL || 'http://localhost:5000');
 
 export const API_ENDPOINTS = {
   // Auth endpoints

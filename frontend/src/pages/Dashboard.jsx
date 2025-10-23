@@ -4,6 +4,7 @@ import { DollarSign, TrendingUp, TrendingDown, Calendar, BarChart3, PieChart, Pl
 const Dashboard = () => {
   const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth());
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
+  const [salaryType, setSalaryType] = useState('fixed');
   
   const months = [
     'January', 'February', 'March', 'April', 'May', 'June',
@@ -55,8 +56,20 @@ const Dashboard = () => {
           </div>
           
           <div className="flex items-center space-x-4 mt-4 md:mt-0">
-            <select 
-              value={selectedMonth} 
+            <div className="flex items-center space-x-2">
+              <label className="text-sm font-medium text-gray-700">Salary Type:</label>
+              <select
+                value={salaryType}
+                onChange={(e) => setSalaryType(e.target.value)}
+                className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500"
+              >
+                <option value="fixed">Fixed</option>
+                <option value="variable">Variable</option>
+              </select>
+            </div>
+
+            <select
+              value={selectedMonth}
               onChange={(e) => setSelectedMonth(parseInt(e.target.value))}
               className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500"
             >
@@ -64,9 +77,9 @@ const Dashboard = () => {
                 <option key={index} value={index}>{month}</option>
               ))}
             </select>
-            
-            <select 
-              value={selectedYear} 
+
+            <select
+              value={selectedYear}
               onChange={(e) => setSelectedYear(parseInt(e.target.value))}
               className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500"
             >
@@ -74,7 +87,7 @@ const Dashboard = () => {
               <option value={2024}>2024</option>
               <option value={2023}>2023</option>
             </select>
-            
+
             <button className="bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-lg flex items-center">
               <Download className="h-4 w-4 mr-2" />
               Export
@@ -210,6 +223,56 @@ const Dashboard = () => {
               })}
             </div>
           </div>
+        </div>
+
+        {/* Salary Details Section */}
+        <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
+          <div className="flex items-center justify-between mb-6">
+            <h3 className="text-xl font-semibold text-gray-900">Salary Details</h3>
+            <div className="text-sm text-gray-500">
+              Type: {salaryType === 'fixed' ? 'Fixed Salary' : 'Variable Salary'}
+            </div>
+          </div>
+
+          {salaryType === 'fixed' ? (
+            <div className="space-y-4">
+              <div className="flex items-center justify-between p-4 bg-blue-50 rounded-lg">
+                <div>
+                  <div className="font-medium text-gray-900">Monthly Fixed Salary</div>
+                  <div className="text-sm text-gray-500">Consistent monthly income</div>
+                </div>
+                <div className="text-2xl font-bold text-blue-600">
+                  {formatCurrency(4200)}
+                </div>
+              </div>
+              <div className="text-sm text-gray-600">
+                Your fixed salary provides stability and predictable income. This amount is deposited regularly each month.
+              </div>
+            </div>
+          ) : (
+            <div className="space-y-4">
+              <div className="grid md:grid-cols-3 gap-4">
+                <div className="p-4 bg-green-50 rounded-lg">
+                  <div className="font-medium text-gray-900">Base Salary</div>
+                  <div className="text-2xl font-bold text-green-600">{formatCurrency(3000)}</div>
+                  <div className="text-sm text-gray-500">Fixed component</div>
+                </div>
+                <div className="p-4 bg-yellow-50 rounded-lg">
+                  <div className="font-medium text-gray-900">Bonuses</div>
+                  <div className="text-2xl font-bold text-yellow-600">{formatCurrency(800)}</div>
+                  <div className="text-sm text-gray-500">Performance-based</div>
+                </div>
+                <div className="p-4 bg-purple-50 rounded-lg">
+                  <div className="font-medium text-gray-900">Commissions</div>
+                  <div className="text-2xl font-bold text-purple-600">{formatCurrency(400)}</div>
+                  <div className="text-sm text-gray-500">Sales incentives</div>
+                </div>
+              </div>
+              <div className="text-sm text-gray-600">
+                Variable salary includes base pay plus additional earnings from bonuses and commissions. This can fluctuate based on performance and sales.
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Recent Transactions */}
