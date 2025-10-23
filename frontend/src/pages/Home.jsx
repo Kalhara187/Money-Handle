@@ -11,12 +11,21 @@ const Home = () => {
   return (
     <main className="overflow-x-hidden">
       <Hero />
-      <IncomeTracker />
-      <Features />
-      <VideoDemo />
-      <Testimonials />
-      <Stats />
-      <FAQ />
+      <div id="features">
+        <Features />
+      </div>
+      <div id="video-demo">
+        <VideoDemo />
+      </div>
+      <div id="testimonials">
+        <Testimonials />
+      </div>
+      <div id="stats">
+        <Stats />
+      </div>
+      <div id="faq">
+        <FAQ />
+      </div>
     </main>
   );
 };
