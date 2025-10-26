@@ -6,6 +6,7 @@ import Stats from '../components/Stats';
 import VideoDemo from '../components/VideoDemo';
 import Testimonials from '../components/Testimonials';
 import FAQ from '../components/FAQ';
+import AIChatBot from '../components/AIChatBot';
 
 const Home = () => {
   return (
@@ -25,6 +26,9 @@ const Home = () => {
       </div>
       <div id="faq">
         <FAQ />
+      </div>
+      <div id="ai-chatbot">
+        <AIChatBot />
       </div>
     </main>
   );

@@ -2,6 +2,7 @@ const express = require('express');
 const { body, validationResult } = require('express-validator');
 const User = require('../models/User');
 const { createSendToken, protect } = require('../middleware/auth');
+const { securityLogger } = require('../middleware/logging');
 
 const router = express.Router();
 
@@ -118,8 +119,16 @@ router.post('/signin', signinValidation, async (req, res) => {
 
     // Authenticate user
     const authResult = await User.getAuthenticated(email, password);
-    
+
     if (!authResult.success) {
+      // Log failed login attempts for security monitoring
+      securityLogger('FAILED_LOGIN_ATTEMPT', {
+        email,
+        reason: authResult.reason,
+        ip: req.ip || req.connection.remoteAddress,
+        userAgent: req.get('User-Agent')
+      });
+
       return res.status(401).json({
         success: false,
         message: authResult.reason === 'User not found' ? 'Invalid credentials' : authResult.reason,

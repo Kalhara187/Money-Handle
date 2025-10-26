@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { MessageCircle, X, Send, Bot, User, Minimize2, Maximize2, RefreshCw, Calculator, Calendar, CreditCard, PieChart, Target, Bell, Sparkles, Zap, DollarSign, TrendingUp } from 'lucide-react';
+import { aiAPI } from '../services/ai.js';
 
 const AIChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -301,7 +302,7 @@ Try saying something like "Calculate my budget" or "Set a reminder" and I'll wal
     }
   };
 
-  const handleSendMessage = () => {
+  const handleSendMessage = async () => {
     if (inputMessage.trim() === '') return;
 
     const userMessage = {
@@ -315,8 +316,19 @@ Try saying something like "Calculate my budget" or "Set a reminder" and I'll wal
     setInputMessage('');
     setIsTyping(true);
 
-    // Simulate bot typing delay
-    setTimeout(() => {
+    try {
+      // Try to use backend API first
+      const response = await aiAPI.sendMessage({ message: inputMessage });
+      const botResponse = {
+        id: Date.now() + 1,
+        text: response.data.response,
+        sender: 'bot',
+        timestamp: new Date()
+      };
+      setMessages(prev => [...prev, botResponse]);
+    } catch (error) {
+      console.error('AI API error:', error);
+      // Fallback to local response
       const botResponse = {
         id: Date.now() + 1,
         text: getResponse(inputMessage),
@@ -324,8 +336,9 @@ Try saying something like "Calculate my budget" or "Set a reminder" and I'll wal
         timestamp: new Date()
       };
       setMessages(prev => [...prev, botResponse]);
+    } finally {
       setIsTyping(false);
-    }, 1000);
+    }
   };
 
   const handleKeyPress = (e) => {
