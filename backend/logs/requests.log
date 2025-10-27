@@ -39,3 +39,4 @@
 {"timestamp":"2025-10-26T21:22:37.316Z","method":"POST","url":"/api/auth/logout","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT; Windows NT 10.0; en-US) WindowsPowerShell/5.1.26100.6899","headers":{"content-type":"application/x-www-form-urlencoded","authorization":"[REDACTED]"}}
 {"timestamp":"2025-10-26T21:22:46.842Z","method":"POST","url":"/api/auth/check-email","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT; Windows NT 10.0; en-US) WindowsPowerShell/5.1.26100.6899","headers":{"content-type":"application/json"}}
 {"timestamp":"2025-10-26T21:22:55.132Z","method":"GET","url":"/api/user/stats","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT; Windows NT 10.0; en-US) WindowsPowerShell/5.1.26100.6899","headers":{"authorization":"[REDACTED]"}}
+{"timestamp":"2025-10-26T21:56:42.218Z","method":"GET","url":"/api/health","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT; Windows NT 10.0; en-US) WindowsPowerShell/5.1.26100.6899","headers":{}}
